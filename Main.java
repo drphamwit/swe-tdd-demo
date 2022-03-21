@@ -25,7 +25,7 @@ public class Main {
 	 */
 	public static String processNumber(int num) {
         // TODO: Write your code here
-        return "";
+        return "1";
     }
     
     /**
