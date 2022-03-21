@@ -25,7 +25,12 @@ public class Main {
 	 */
 	public static String processNumber(int num) {
         // TODO: Write your code here
-        return "";
+        if (num < 0) return "";
+        if (num == 0) return "0";
+        if (num % 15 == 0) return "FizzBuzz";
+        if (num % 3 == 0) return "Fizz";
+        if (num % 5 == 0) return "Buzz";
+        return num+"";
     }
     
     /**
@@ -35,7 +40,16 @@ public class Main {
 	 */
 	public static String processNumbers(int[] nums) {
         // TODO: Write your code here
-        return "";
+        String proc_num, new_nums = "";
+        for (int i = 0; i < nums.length; i++) {
+          proc_num = processNumber(nums[i]);
+          if ((i == nums.length-1) || (proc_num == "")) {
+            new_nums = new_nums + proc_num;
+          } else {
+            new_nums = new_nums + proc_num + ", ";
+          }
+        }
+        return new_nums;
     }
     
     /**
@@ -45,7 +59,14 @@ public class Main {
         System.out.println("Running processNumber test cases");
         // TODO: Write test cases for processNumber here using assertEquals
         // E.g., assertEquals(processNumber(1), "1");
+      assertEquals(processNumber(-99), "");
+      assertEquals(processNumber(0), "0");
       assertEquals(processNumber(1), "1");
+      assertEquals(processNumber(3), "Fizz");
+      assertEquals(processNumber(5), "Buzz");
+      assertEquals(processNumber(15), "FizzBuzz");
+      assertEquals(processNumber(30), "FizzBuzz");
+      assertEquals(processNumber(33), "Fizz");
     }
     
     /**
@@ -56,6 +77,10 @@ public class Main {
         // TODO: Write test cases for processNumbers here using assertEquals
         // E.g., assertEquals(processNumbers(new int[] {1}), "1");
       assertEquals(processNumbers(new int[] {1}), "1");
+      assertEquals(processNumbers(new int[] {3, 5, 15}), "Fizz, Buzz, FizzBuzz");
+      assertEquals(processNumbers(new int[] {1, 3, 5, 15}), "1, Fizz, Buzz, FizzBuzz");
+      assertEquals(processNumbers(new int[] {3, 30, 33, 34}), "Fizz, FizzBuzz, Fizz, 34");
+      assertEquals(processNumbers(new int[] {0, -23, 3, 5}), "0, Fizz, Buzz");
     }
 
     /**
